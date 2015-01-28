@@ -3,7 +3,7 @@
  */
 import java.util.*;
 
-public class Card {
+public class Card implements Showable {
 
     public static final String[] SUITS = {
 	"clubs",
