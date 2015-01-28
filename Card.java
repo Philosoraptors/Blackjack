@@ -27,31 +27,39 @@ public class Card {
     "Queen",
     "King"
   };
+  
+  public String suiteStr;
+  public String cardStr;
+  public String id;
+  public int index;
+  public int val;
+  public int suite;  
 
+  public Card (int a){
+    
+  index = a;
+  val = ((int)index / 4) + 1;
+  suite = index % 4;
+  suiteStr = SUITS[suite];
+  cardStr = VALUES[val-1];
+  id = cardStr + " of " + suiteStr;
 
-  private int id;
-  private int val;
-  private int suite;  
+  }
 
-  public int CardVal(int i) {
-    val = ((int)i / 4) + 1;
+  public int cardVal() {
     return val;
-    }
-
-  public String CardId (int i) {
-    val = ((int)i / 4) + 1;
-    suite = i % 4;
-    return (VALUES[val-1] + " of " + SUITS[suite]);
   }
 
-  public String CardSuite (int i) {
-    suite = i % 4;
-    return (SUITS[suite]);
+  public String cardId () {
+    return id;
   }
 
-  public String CardNumStr (int i) {
-    val = ((int)i / 4) + 1;
-    return (VALUES[val-1]);
+  public String cardSuite () {
+    return suiteStr;
+  }
+
+  public String cardName () {
+    return cardStr;
   }
   
 }
