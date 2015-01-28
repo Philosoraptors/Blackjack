@@ -3,9 +3,8 @@
  */
 import java.util.*;
 
-public class Card implements Showable {
+public class Card {
 
-<<<<<<< HEAD
   public static final String[] SUITS = {
     "clubs",
     "spades",
@@ -55,35 +54,4 @@ public class Card implements Showable {
     return (VALUES[val-1]);
   }
   
-=======
-    public static final String[] SUITS = {
-	"clubs",
-	"spades",
-	"hearts",
-	"diamonds"
-    };
-    
-    public static final String[] VALUES = {
-	"Two",
-	"Three",
-	"Four",
-	"Five",
-	"Six",
-	"Seven",
-	"Eight",
-	"Nine",
-	"Ten",
-	"Jack",
-	"Queen",
-	"King",
-	"Ace"
-    };
-    
-    
-    private int id;
-    
-    public Card(int i) {
-	id = i;
-    }
->>>>>>> f83896cadb6c41c0f0ed426216eab6dbb9c1bef3
 }
