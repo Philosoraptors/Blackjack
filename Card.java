@@ -13,6 +13,7 @@ public class Card {
   };
 
   public static final String[] VALUES = {
+    "Ace",
     "Two",
     "Three",
     "Four",
@@ -24,14 +25,33 @@ public class Card {
     "Ten",
     "Jack",
     "Queen",
-    "King",
-    "Ace"
+    "King"
   };
 
 
   private int id;
+  private int val;
+  private int suite;  
 
-  public Card(int i) {
-    id = i;
+  public int CardVal(int i) {
+    val = ((int)i / 4) + 1;
+    return val;
+    }
+
+  public String CardId (int i) {
+    val = ((int)i / 4) + 1;
+    suite = i % 4;
+    return (VALUES[val-1] + " of " + SUITS[suite]);
   }
+
+  public String CardSuite (int i) {
+    suite = i % 4;
+    return (SUITS[suite]);
+  }
+
+  public String CardNumStr (int i) {
+    val = ((int)i / 4) + 1;
+    return (VALUES[val-1]);
+  }
+  
 }
