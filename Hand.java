@@ -20,7 +20,7 @@ public class Hand {
     public int getScore() {
 	    for (Card c : cards){
         score += c.cardVal();
-        if (c.cardVal == 1){
+        if (c.cardVal() == 1){
           score += 10;
           aceCount++;
         }
