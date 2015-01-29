@@ -36,7 +36,8 @@ public class Card {
   public int suite;  
 
   public Card (int a){
-    
+  
+  //Taking the card value, an int from 1-52, and calculating the card value and suite
   index = a;
   val = ((int)index / 4) + 1;
   suite = index % 4;
@@ -46,11 +47,12 @@ public class Card {
 
   }
 
+  //Standard functions to get the card value, suite, etc.
   public int cardVal() {
     return val;
   }
 
-  public String cardId () {
+  public String toString () {
     return id;
   }
 
