@@ -34,6 +34,7 @@ public class Card {
   public int index;
   public int val;
   public int suite;  
+  public int valCorrected;
 
   public Card (int a){
   
@@ -44,6 +45,10 @@ public class Card {
   suiteStr = SUITS[suite];
   cardStr = VALUES[val-1];
   id = cardStr + " of " + suiteStr;
+  // sets jacks, queens, and kings to 10
+  if (index > 39){
+    val = 10;
+  }  
 
   }
 
@@ -63,5 +68,8 @@ public class Card {
   public String cardName () {
     return cardStr;
   }
-  
+
+  public int cardIndex () {
+    return index;
+  }
 }

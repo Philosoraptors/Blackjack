@@ -11,7 +11,7 @@ public class Deck {
   public Deck() {
     cards = new Stack<Card>();
 
-    for (int i = 0; i < 52; i++) {
+    for (int i = 1; i < 52; i++) {
       cards.push(new Card(i));
     }
   }
