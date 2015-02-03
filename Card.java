@@ -38,7 +38,7 @@ public class Card {
 
   public Card (int a){
   
-  //Taking the card value, an int from 1-52, and calculating the card value and suite
+  //Taking the card value, an int from 0-51, and calculating the card value and suite
   index = a;
   val = ((int)index / 4) + 1;
   suite = index % 4;

@@ -61,10 +61,31 @@ public class Dealer {
         System.out.println("Would you like to hit or stand?");
         String hitOrStand = scan.next();
         if (hitOrStand.equals("hit")){
-          System.out.println("Good for you");
+          p.addCard(deck.drawCard());
+          System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
         }
-        p.setStand();
+        if (hitOrStand.equals("stand")){
+          p.setStand();
+          System.out.println("You have chosen to stand. Your score is: " + p.getScore());
+          }
+        if (p.getScore() > 21){
+          System.out.println("I'm sorry, but you have lost. Your score is: " + p.getScore() + ". Good luck next time.");
+          //sets the value of standBool to true, so that checkStand() will return true
+          p.setStand();
+        }
         System.out.println("");
+      }
+    }
+
+    int highestScore = 0;
+    for (Hand p : players){
+      if ((p.getScore() > highestScore) && (p.getScore() <= 21)){
+        highestScore = p.getScore();
+      }
+    }
+    for (Hand p : players){
+      if (p.getScore() == highestScore){
+        System.out.println("Player " + p.getPlayer() + ", you win the round. \n");
       }
     }
   }
