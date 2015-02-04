@@ -9,11 +9,8 @@ public class Dealer {
   private static Deck deck;
   private static ArrayList<Hand> players;
   private static Hand dealer;
-    
+
   public static void main(String[] args) {
-    
-    
-    
     // Create deck
     deck = new Deck();
     deck.shuffle();
@@ -34,13 +31,16 @@ public class Dealer {
       System.out.print("Player " + (i+1) + ", what is your name? ");
       String name = scan.next();
       players.get(i).setPlayer(name);
-    }   
-   
+    }
+
     // Deal hands
     for (Hand p : players){
       p.addCard(deck.drawCard());
       p.addCard(deck.drawCard());
     }
+
+    dealer.addCard(deck.drawCard());
+    dealer.addCard(deck.drawCard());
 
     // Check if players have doubles and if they want to split their hand
     for (Hand p : players){
@@ -58,28 +58,54 @@ public class Dealer {
       }
     }
 
-    showTable();
+    // Main game loop
+    boolean done = false;
+    while (!done) {
+      showTable();
 
-    // Ask players if they want to hit or stand
-    for (Hand p : players){
-      while (p.checkStand() == false){
-        System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
-        System.out.println("Would you like to hit or stand?");
-        String hitOrStand = scan.next();
-        if (hitOrStand.equals("hit")){
-          p.addCard(deck.drawCard());
-          System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
-        }
-        if (hitOrStand.equals("stand")){
-          p.setStand();
-          System.out.println("You have chosen to stand. Your score is: " + p.getScore());
+      // Go through player turns
+      for (Hand p : players) {
+        if (!p.checkStand() && p.getScore() < 21) {
+          System.out.print(p.getPlayer() + ", your score is " + p.getScore() + ". Would you like to hit or stand? ");
+
+          // Check input
+          String input = scan.next().toLowerCase();
+
+          if (input.equals("hit") || input.equals("h")) {
+            Card c = deck.drawCard();
+            System.out.println("You drew: " + c.toString());
+            p.addCard(c);
+
+            if (p.getScore() > 21) System.out.println("Bust!");
           }
-        if (p.getScore() > 21){
-          System.out.println("I'm sorry, but you have lost. Your score is: " + p.getScore() + ". Good luck next time.");
-          //sets the value of standBool to true, so that checkStand() will return true
-          p.setStand();
+
+          if (input.equals("stand") || input.equals("s")) {
+            p.setStand();
+          }
         }
-        System.out.println("");
+      }
+
+      // Dealer turn
+      if (!dealer.checkStand()) {
+        if (dealer.getScore() < 17) {
+          Card c = deck.drawCard();
+          System.out.println("Dealer hits: " + c.toString());
+          dealer.addCard(c);
+
+          if (dealer.getScore() > 21) {
+            System.out.println("Dealer busts!");
+          }
+        } else {
+          System.out.println("Dealer stands");
+          dealer.setStand();
+        }
+      }
+
+      // Check endgame conditions
+      done = true;
+      for (Hand p : players) {
+        if (!p.checkStand() && p.getScore() < 21) done = false;
+        if (!dealer.checkStand()) done = false;
       }
     }
 
@@ -97,9 +123,10 @@ public class Dealer {
   }
 
   public static void showTable() {
+    System.out.println();
     for (Hand p : players) {
-      System.out.println(p.getPlayer() + " has: \n" + p.toString());
+      System.out.println(p.getPlayer() + " has a score of " + p.getScore() + ":\n" + p.toString());
     }
-    System.out.println("The dealer has: \n" + dealer.toString());
+    System.out.println("The dealer has a score of " + dealer.getScore() + ":\n" + dealer.toString());
   }
 }

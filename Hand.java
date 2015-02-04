@@ -9,8 +9,8 @@ public class Hand {
     int score;
     String player = "";
     boolean standBool = false;
-    
-    //PUBLIC METHODS    
+
+    //PUBLIC METHODS
 
     public Hand() {
 	    cards = new ArrayList<Card>();
