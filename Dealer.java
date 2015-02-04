@@ -61,38 +61,52 @@ public class Dealer {
       }
     }
 
-    showTable();
-
     // Main game loop
     boolean done = false;
     while (!done) {
+      showTable();
+
       // Go through player turns
       for (Hand p : players) {
-        System.out.print("Would you like to hit or stand? ");
-        String input = scan.next().toLowerCase();
-        if (input.equals("hit") || input.equals("h")) {
-          Card c = deck.drawCard(
+        if (!p.checkStand() && p.getScore() < 21) {
+          System.out.print(p.getPlayer() + ", your score is " + p.getScore() + ". Would you like to hit or stand? ");
+          
+          // Check input
+          String input = scan.next().toLowerCase();
 
+          if (input.equals("hit") || input.equals("h")) {
+            Card c = deck.drawCard();
+            System.out.println("You drew: " + c.toString());
+            p.addCard(c);
 
-    for (Hand p : players){
-      while (p.checkStand() == false){
-        System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
-        System.out.println("Would you like to hit or stand?");
-        String hitOrStand = scan.next();
-        if (hitOrStand.equals("hit")){
-          p.addCard(deck.drawCard());
-          System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
-        }
-        if (hitOrStand.equals("stand")){
-          p.setStand();
-          System.out.println("You have chosen to stand. Your score is: " + p.getScore());
+            if (p.getScore() > 21) System.out.println("Bust!");
           }
-        if (p.getScore() > 21){
-          System.out.println("I'm sorry, but you have lost. Your score is: " + p.getScore() + ". Good luck next time.");
-          //sets the value of standBool to true, so that checkStand() will return true
-          p.setStand();
+
+          if (input.equals("stand") || input.equals("s")) {
+            p.setStand();
+          }
         }
-        System.out.println("");
+      }
+
+      // Dealer turn
+      if (dealer.getScore() < 17) {
+        Card c = deck.drawCard();
+        System.out.println("Dealer hits: " + c.toString());
+        dealer.addCard(c);
+
+        if (dealer.getScore() > 21) {
+          System.out.println("Dealer busts!");
+        }
+      } else {
+        System.out.println("Dealer stands");
+        dealer.setStand();
+      }
+      
+      // Check endgame conditions
+      done = true;
+      for (Hand p : players) {
+        if (!p.checkStand() && p.getScore() < 21) done = false;
+        if (!dealer.checkStand()) done = false;
       }
     }
 
