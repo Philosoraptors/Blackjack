@@ -9,11 +9,8 @@ public class Dealer {
   private static Deck deck;
   private static ArrayList<Hand> players;
   private static Hand dealer;
-    
+
   public static void main(String[] args) {
-    
-    
-    
     // Create deck
     deck = new Deck();
     deck.shuffle();
@@ -34,8 +31,8 @@ public class Dealer {
       System.out.print("Player " + (i+1) + ", what is your name? ");
       String name = scan.next();
       players.get(i).setPlayer(name);
-    }   
-   
+    }
+
     // Deal hands
     for (Hand p : players){
       p.addCard(deck.drawCard());
@@ -70,7 +67,7 @@ public class Dealer {
       for (Hand p : players) {
         if (!p.checkStand() && p.getScore() < 21) {
           System.out.print(p.getPlayer() + ", your score is " + p.getScore() + ". Would you like to hit or stand? ");
-          
+
           // Check input
           String input = scan.next().toLowerCase();
 
@@ -101,7 +98,7 @@ public class Dealer {
         System.out.println("Dealer stands");
         dealer.setStand();
       }
-      
+
       // Check endgame conditions
       done = true;
       for (Hand p : players) {
