@@ -6,13 +6,16 @@ import java.io.*;
 import java.util.*;
 
 public class Dealer {
+  private static Deck deck;
+  private static ArrayList<Hand> players;
+  private static Hand dealer;
     
   public static void main(String[] args) {
     
     
     
     // Create deck
-    Deck deck = new Deck();
+    deck = new Deck();
     deck.shuffle();
 
     // Set up input
@@ -24,8 +27,8 @@ public class Dealer {
     System.out.println();
 
     // Create hands
-    Hand dealer = new Hand();
-    ArrayList<Hand> players = new ArrayList<Hand>();
+    dealer = new Hand();
+    players = new ArrayList<Hand>();
     for (int i = 0; i < playnum; i++) {
 	    players.add(new Hand());
       System.out.print("Player " + (i+1) + ", what is your name? ");
@@ -55,9 +58,11 @@ public class Dealer {
       }
     }
 
+    showTable();
+
     // Ask players if they want to hit or stand
     for (Hand p : players){
-      while (p.checkStand() == false){      
+      while (p.checkStand() == false){
         System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
         System.out.println("Would you like to hit or stand?");
         String hitOrStand = scan.next();
@@ -89,5 +94,12 @@ public class Dealer {
         System.out.println("Player " + p.getPlayer() + ", you win the round. \n");
       }
     }
+  }
+
+  public static void showTable() {
+    for (Hand p : players) {
+      System.out.println(p.getPlayer() + " has: \n" + p.toString());
+    }
+    System.out.println("The dealer has: \n" + dealer.toString());
   }
 }
