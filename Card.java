@@ -6,10 +6,10 @@ import java.util.*;
 public class Card {
 
   public static final String[] SUITS = {
-    "clubs",
-    "spades",
-    "hearts",
-    "diamonds"
+    "\u2663",
+    "\u2660",
+    "\u2665",
+    "\u2666"
   };
 
   public static final String[] VALUES = {
