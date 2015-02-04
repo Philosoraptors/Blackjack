@@ -45,10 +45,10 @@ public class Hand {
         if (tempScore > 21){
           while (tempAceCount > 0){
             tempScore -= 10;
-            tempAceCount--; 
+            tempAceCount--;
           }
-        score = tempScore;
-        } 
+          score = tempScore;
+        }
       }
 	    return tempScore;
     }  
