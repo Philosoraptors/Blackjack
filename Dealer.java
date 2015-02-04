@@ -86,17 +86,19 @@ public class Dealer {
       }
 
       // Dealer turn
-      if (dealer.getScore() < 17) {
-        Card c = deck.drawCard();
-        System.out.println("Dealer hits: " + c.toString());
-        dealer.addCard(c);
+      if (!dealer.checkStand()) {
+        if (dealer.getScore() < 17) {
+          Card c = deck.drawCard();
+          System.out.println("Dealer hits: " + c.toString());
+          dealer.addCard(c);
 
-        if (dealer.getScore() > 21) {
-          System.out.println("Dealer busts!");
+          if (dealer.getScore() > 21) {
+            System.out.println("Dealer busts!");
+          }
+        } else {
+          System.out.println("Dealer stands");
+          dealer.setStand();
         }
-      } else {
-        System.out.println("Dealer stands");
-        dealer.setStand();
       }
 
       // Check endgame conditions
@@ -121,6 +123,7 @@ public class Dealer {
   }
 
   public static void showTable() {
+    System.out.println();
     for (Hand p : players) {
       System.out.println(p.getPlayer() + " has a score of " + p.getScore() + ":\n" + p.toString());
     }
