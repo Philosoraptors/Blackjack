@@ -19,15 +19,16 @@ public class Dealer {
     Scanner scan = new Scanner(System.in);
 
     // Ask about players
-    System.out.println("How many people are playing?");
+    System.out.print("How many people are playing? ");
     int playnum = scan.nextInt();
+    System.out.println();
 
     // Create hands
     Hand dealer = new Hand();
     ArrayList<Hand> players = new ArrayList<Hand>();
     for (int i = 0; i < playnum; i++) {
 	    players.add(new Hand());
-      System.out.println("Player " + (i+1) + ", what is your name?");
+      System.out.print("Player " + (i+1) + ", what is your name? ");
       String name = scan.next();
       players.get(i).setPlayer(name);
     }   
@@ -41,7 +42,7 @@ public class Dealer {
     // Check if players have doubles and if they want to split their hand
     for (Hand p : players){
       if (p.checkDouble()){
-        System.out.println("Player " + p.getPlayer() + ", you have doubles. Your cards are: " + p.toString() + "\nWould you like to split your deck? [y/n] \n");
+        System.out.println(p.getPlayer() + ", you have doubles. Your cards are: " + p.toString() + "\nWould you like to split your deck? [y/n] \n");
         String splitChoice = scan.next();
         int card1 = p.getCardVal(0);
         if (splitChoice == "y"){
