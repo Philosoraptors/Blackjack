@@ -42,6 +42,9 @@ public class Dealer {
       p.addCard(deck.drawCard());
     }
 
+    dealer.addCard(deck.drawCard());
+    dealer.addCard(deck.drawCard());
+
     // Check if players have doubles and if they want to split their hand
     for (Hand p : players){
       if (p.checkDouble()){
@@ -60,7 +63,17 @@ public class Dealer {
 
     showTable();
 
-    // Ask players if they want to hit or stand
+    // Main game loop
+    boolean done = false;
+    while (!done) {
+      // Go through player turns
+      for (Hand p : players) {
+        System.out.print("Would you like to hit or stand? ");
+        String input = scan.next().toLowerCase();
+        if (input.equals("hit") || input.equals("h")) {
+          Card c = deck.drawCard(
+
+
     for (Hand p : players){
       while (p.checkStand() == false){
         System.out.println("\nPlayer " + p.getPlayer() + " has: \n" + p.toString());
