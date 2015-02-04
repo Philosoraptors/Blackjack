@@ -125,8 +125,8 @@ public class Dealer {
 
   public static void showTable() {
     for (Hand p : players) {
-      System.out.println(p.getPlayer() + " has: \n" + p.toString());
+      System.out.println(p.getPlayer() + " has a score of " + p.getScore() + ":\n" + p.toString());
     }
-    System.out.println("The dealer has: \n" + dealer.toString());
+    System.out.println("The dealer has a score of " + dealer.getScore() + ":\n" + dealer.toString());
   }
 }
