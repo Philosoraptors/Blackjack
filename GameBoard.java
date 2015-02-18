@@ -44,7 +44,17 @@ static ArrayList<BufferedImage> Deck = new ArrayList<BufferedImage>();
      }
  
    }
- 
+
+/*  public void drawCard(int a, int x, int y) {
+    int cardIndex = a;
+    int xCord = x;
+    int yCord = y;
+    BufferedImage card;
+      card = Deck.get(cardIndex);
+      gr.drawImage(card,xCord,yCord,(ImageObserver)null);
+  }
+*/ 
+
    public static void main (String[] args) throws java.io.IOException {
      loadDeck();
       showCards();
